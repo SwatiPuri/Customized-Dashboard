@@ -1,0 +1,13 @@
+.joystick
+{height:10%;
+ width:10%;
+ position: absolute;
+ bottom: 3em;
+}
+
+#map_div{
+    background-color:black;
+    border:5px solid grey;
+    width:100%;
+    color:#FFF
+}

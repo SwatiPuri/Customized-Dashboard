@@ -1,0 +1,22 @@
+<table border="1" >
+<thead>
+    <tr>
+        <th>Waypoints</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Altitude</th>
+        <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let waypoint of waypointsArray;" >
+      <td>{{waypoint.waypoint}}</td>
+      <td>{{waypoint.latitude}}</td>
+      <td>{{waypoint.longitude}}</td>
+      <td>{{waypoint.altitude}}</td>
+      <td><button>X</button></td>
+
+    </tr>
+
+</tbody>
+</table>

@@ -1,0 +1,15 @@
+button{
+    color: black;
+}
+.glyphicon{
+  font-size: 50px;
+  color: #FFF;
+}
+
+.commonStyle{
+  background-color:black;
+  border:10px solid grey;
+  width:100%;
+  color:#FFF;
+}
+

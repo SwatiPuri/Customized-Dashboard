@@ -1,0 +1,120 @@
+<div *ngIf = "MainPanel">
+<table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <tr>
+
+        <td style="padding-left:3em"><a>
+          <!--  <img src="../../assets/images/Connecting-Puzzle.jpg" height="60px" width="100px" (click) = "ImageClicked('connected')"/>
+       -->
+       <div (click) = "connectfn()">
+       <span class="glyphicon glyphicon-plus-sign"></span>
+     </div>
+        </a>
+        </td>
+    </tr>
+    <tr>
+
+        <td style="padding-left:3em"><a>
+      <!--  <img src="../../assets/images/images.png" height="60px" width="100px" (click) = "MissionPlan()" />
+      -->
+      <div (click) = "MissionPlan()">
+      <span class="glyphicon glyphicon-pencil"></span>
+    </div>
+      </a></td>
+    </tr>
+    <tr>
+
+        <td style="padding-left:3em"><a>
+          <div (click) = "flyDrone()">
+          <span class="glyphicon glyphicon-play"></span>
+        </div>
+      <!--  <img src="../../assets/images/fly.jpg" height="60px" width="100px" (click) = "flyDrone()"/>-->
+        </a></td>
+    </tr>
+    <tr>
+
+        <td><a>
+      <!--  <img src="../../assets/images/others.jpg" height="60px" width="100px" (click) = "OtherOptions()" />
+      -->  </a></td>
+    </tr>
+</table>
+</div>
+<div *ngIf = "missionPanel" style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <tr>
+      <td>
+        <button></button>
+      </td>
+    </tr>
+    <tr>
+        <td>
+            <button></button>
+        </td>
+      </tr>
+      <tr>
+          <td>
+              <button></button>
+          </td>
+        </tr>
+    </table>
+
+        <button value="close" (click) = "goToMainPanel()">Go Back</button>
+</div>
+<div *ngIf = "connectionPanel">
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+        <tr>
+          <td>
+            <button></button>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <button></button>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                  <button></button>
+              </td>
+            </tr>
+        </table>
+    
+
+
+ <button value="close" (click) = "goToMainPanel()">Go Back</button>
+</div>
+<div *ngIf = "flightPanel">
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+        <tr>
+          <td>
+            <button (click)="postStartMotor()">Start Motor</button>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="poststopMotor()">Stop Motor</button>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                  <button (click)="poststartFlight()">Start Flight</button>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                    <button (click)="poststopFlight()">Stop Flight</button>
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                      <button (click)="pauseFlight()">Pause Flight</button>
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button (click)="comeHome()">Come Home</button>
+                    </td>
+                  </tr>
+        </table>
+
+ <button value="close" (click) = "goToMainPanel()">Go Back</button>
+    </div>

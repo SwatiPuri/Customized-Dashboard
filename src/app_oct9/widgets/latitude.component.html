@@ -1,0 +1,428 @@
+<div *ngIf="showWidgets" style="background-color:black;border:5px solid grey;height:100vh;width:120%;color:#FFF;overflow-y:scroll">
+
+    <div>
+
+          <!--  <button (click)="postWaypoints1()">Waypoints</button>
+            <br/>
+            <button class="btn btn1 btn2" (click)="readCsvData()">
+                Read CSV Data
+             </button>
+           -->
+
+Make your Selection
+<br/>
+<input type="checkbox" name="selection" [(ngModel)]="valeSelectionBlockDrone" (change)="valueselectionfordrone(this.value)"/> Drone
+&nbsp;
+<input type="checkbox" name="selection" [(ngModel)]="valeSelectionBlockGU" (change)="valueselectionforgu('gu')"/> Ground Unit
+<br/>
+<div *ngIf="valeSelectionBlockDrone">
+        Drone <br/>
+    Select the values you want to see :
+    <br/>
+    <select style="background-color:black" multiple="multiple" class="dropdown">
+        <option *ngFor="let x of droneApis" (click)="selectApisforDrone(x)">{{x}}</option>
+
+    </select>
+<!--
+    <div *ngFor="let y of selectedDroneApis">
+        {{y}}
+    </div>
+-->
+    <br>
+    <div *ngIf="droneOrientationFlag">
+<div class="panel panel-default">
+                <div class="panel-heading"> Drone Orientation
+                    <span style="float:right;cursor:pointer" (click)="droneOrientationFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+        drone Orientation Yaw: {{droneOrientationYaw }}<br/>
+        drone Orientation Roll: {{droneOrientationRoll}}<br/>
+        drone Orientation Pitch: {{droneOrientationPitch}}<hr>
+       </div>
+</div>
+</div>
+
+       <div *ngIf="  droneENUPositionFlag">
+<div class="panel panel-default">
+                <div class="panel-heading"> Drone ENU Position
+                    <span style="float:right;cursor:pointer" (click)="droneENUPositionFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+        drone ENU PositionEast: {{droneENUPositionEast}}<br/>
+        drone ENU PositionNorth: {{droneENUPositionNorth}}<br/>
+        drone ENU PositionUp: {{droneENUPositionUp}}<hr>
+        </div>
+     </div>
+</div>
+        <div *ngIf="droneGPSStateFlag">
+<div class="panel panel-default">
+                <div class="panel-heading"> Drone GPS State
+                    <span style="float:right;cursor:pointer" (click)="droneGPSStateFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+            Gps State Info <br/>
+            Gps State Sattelites : {{GpsStateSattelites}} <br/>
+            Gps State Quality : {{GpsStateQuality}} <br/>
+            Gps State FixType : {{GpsStateFixType}}<br/>
+            Gps State Hdop : {{GpsStateHdop}} <br/>
+            Gps State Pdop : {{GpsStatePdop}} <hr>
+        </div>
+        </div>
+</div>
+        <div *ngIf="droneFlightStateFlag">
+<div class="panel panel-default">
+                <div class="panel-heading"> Drone Flight State
+                    <span style="float:right;cursor:pointer" (click)="droneFlightStateFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+            drone Flight State : {{droneFlightState}} <hr>
+        </div>
+</div>
+</div>
+        <div *ngIf="droneFlightModeFlag">
+      <div class="panel panel-default">
+                <div class="panel-heading"> Drone Flight Mode
+                    <span style="float:right;cursor:pointer" (click)="droneFlightModeFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+            drone Flight Mode : {{droneFlightMode}} <hr>
+        </div>
+</div>
+</div>
+
+   <div *ngIf="droneBasicInfoFlag">
+ <div class="panel panel-default">
+                <div class="panel-heading">  Drone Basic Info
+                    <span style="float:right;cursor:pointer" (click)="droneBasicInfoFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+        Type: {{getdataBasicInfo}}<br/>
+        Serial Number: {{getdataBasicInfoId1}}<br/>
+        Uuid: {{getdataBasicInfoId2}}<hr>
+   </div>
+</div>
+</div>
+   <div *ngIf="droneServiceInfoFlag">
+       <div class="panel panel-default">
+                <div class="panel-heading">  Drone Service Info
+                    <span style="float:right;cursor:pointer" (click)="droneServiceInfoFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Major : {{sampleJsonMajor}}<br/>
+        Minor : {{sampleJsonMinor}}<hr>
+   </div>
+</div>
+</div>
+
+   <div *ngIf="getGpsPositionFlag">
+         <div class="panel panel-default">
+                <div class="panel-heading">  Drone  GPS Position
+                    <span style="float:right;cursor:pointer" (click)="droneGPSPositionFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Latitude : {{sampleJsonGpsPositionLat}}  degrees<br/>
+        Longitude : {{sampleJsonGpsPositionLong}} degrees<br/>
+        Altitude : {{sampleJsonGpsPositionAlt}} metres<hr>
+   </div>
+</div>
+</div>
+
+   <div *ngIf="droneBatteryStatsFlag">
+       <div class="panel panel-default">
+                <div class="panel-heading">  Battery Stats
+                    <span style="float:right;cursor:pointer" (click)="droneBatteryStatsFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Pack cycles : {{batteryInfoJsonPackCycle}} <br/>
+        serial No : {{batteryInfoJsonSerialNumber}} <br/>
+        Type : {{batteryInfoJsonType}} <br/>
+        Pack Capacity : {{batteryInfoJsonPackCapacity}}<hr>
+   </div>
+</div>
+</div>
+
+   <div *ngIf="droneBatteryStateFlag">
+  <div class="panel panel-default">
+                <div class="panel-heading">  Battery State
+                    <span style="float:right;cursor:pointer" (click)="droneBatteryStateFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+        Current : {{batteryStateCurrent}} <br/>
+        State of Charge: {{batteryStateOfCharge}} <br/>
+        Voltage : {{batteryStateVoltage}} <br/>
+        Temperature : {{batteryStateTemperature}}<br/>
+        Error State : {{batteryStateErrorState}}<hr>
+   </div>
+</div>
+</div>
+   <div *ngIf="droneLicenceStatsFlag">
+
+       <div class="panel panel-default">
+                <div class="panel-heading">  Licence Stats
+                    <span style="float:right;cursor:pointer" (click)="droneLicenceStatsFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Valid Until : {{licenceInfoJsonValidUntil}} <br/>
+        Type : {{licenceInfoJsonValidType}}<hr>
+   </div>
+</div>
+</div>
+   <div *ngIf="dronePayloadInfoFlag">
+<div class="panel panel-default">
+      <div class="panel-heading">  Payload Info
+                    <span style="float:right;cursor:pointer" (click)="dronePayloadInfoFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Payload Info Serial Number : {{payloadInfoserialNumber}}<br/>
+        Payload Info type : {{payloadInfoType}}<hr>
+    </div>
+</div>
+</div>
+   <div *ngIf="droneFlightTimeFlag">
+<div class="panel panel-default">
+      <div class="panel-heading">  Drone Flight Time
+                    <span style="float:right;cursor:pointer" (click)="droneFlightTimeFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Drone Flight Time : {{DroneFlightTime}}<hr>
+    </div>
+</div>
+</div>
+   <div *ngIf="dronebatteryLevelFlag">
+<div class="panel panel-default">
+      <div class="panel-heading">  Drone Battery level
+                    <span style="float:right;cursor:pointer" (click)="dronebatteryLevelFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        Drone Battery Level : {{batteryLevel}}<hr>
+   </div>
+   </div>
+</div>
+<div *ngIf="cameraOrientationFlag">
+<div class="panel panel-default">
+      <div class="panel-heading">  Camera Orientation
+                    <span style="float:right;cursor:pointer" (click)="cameraOrientationFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+        <br/>
+        Yaw : {{getYaw}}<br/>
+        Pitch : {{getPitch}}<br/>
+        Roll : {{getRoll}}
+       </div>
+</div>
+   </div>
+
+</div>
+
+
+<div *ngIf="valeSelectionBlockGU">
+        Ground Unit
+        <br/>
+        Select the values you want to see :
+        <br/>
+        <select style="background-color:black" multiple="multiple" class="dropdown">
+                <option *ngFor="let x of gUapis" (click)="selectApisforGU(x)">{{x}}</option>
+
+            </select>
+        <div *ngIf="guBatteryStateFlag">
+     <div class="panel panel-default">
+      <div class="panel-heading">  Ground Unit Battery State :
+                    <span style="float:right;cursor:pointer" (click)="guBatteryStateFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+                 Current : {{batteryStateCurrentGU}} <br/>
+        State of Charge: {{batteryStateOfChargeGU}} <br/>
+        Voltage : {{batteryStateVoltageGU}} <br/>
+        Temperature : {{batteryStateTemperatureGU}}<br/>
+        Error State : {{batteryStateErrorStateGU}}
+
+
+              </div>
+</div>
+           </div>
+           <div *ngIf="guType">
+ <div class="panel panel-default">
+      <div class="panel-heading">  Ground Unit Type :
+                    <span style="float:right;cursor:pointer" (click)="guType=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+                Type :{{GUType}} <br/>
+
+                </div>
+</div>
+           </div>
+           <div *ngIf="guVersion">
+<div class="panel panel-default">
+   <div class="panel-heading">   Ground Unit Version
+                    <span style="float:right;cursor:pointer" (click)="guVersion=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+
+
+                Major :{{GUMajorVersion}} <br/>
+                Minor : {{GUMinorVersion}} <br/>
+
+                </div>
+</div>
+           </div>
+           <div *ngIf="gubatteryLevelFlag">
+<div class="panel panel-default">
+<div class="panel-heading">   Ground Battery Level
+                    <span style="float:right;cursor:pointer" (click)="gubatteryLevelFlag=false">X</span>
+                </div>
+                  <div class="panel-body" style="
+                  background-color: rgba(204, 204, 204, 0.69);
+                  color: black">
+                 Ground Unit Battery Level : {{guBatteryLevelNumber}}
+                <br/>
+
+</div>
+</div>
+           </div>
+
+           <div *ngIf="guBatteryStatsFlag">
+               <div class="panel panel-default">
+                        <div class="panel-heading">  Battery Info for Ground Unit
+                            <span style="float:right;cursor:pointer" (click)="guBatteryStatsFlag=false">X</span>
+                        </div>
+                          <div class="panel-body" style="
+                          background-color: rgba(204, 204, 204, 0.69);
+                          color: black">
+                Pack cycles : {{batteryInfoJsonPackCycleGU}} <br/>
+                Serial No : {{batteryInfoJsonSerialNumberGU}} <br/>
+                Type : {{batteryInfoJsonTypeGU}} <br/>
+                Pack Capacity : {{batteryInfoJsonPackCapacityGU}}<hr>
+           </div>
+           </div>
+           </div>
+
+
+           <div *ngIf="guConnectionState">
+ <div class="panel panel-default">
+                        <div class="panel-heading">       Connection State
+                        <span style="float:right;cursor:pointer" (click)="guConnectionState=false">X</span>
+
+                        </div>
+                          <div class="panel-body" style="
+                          background-color: rgba(204, 204, 204, 0.69);
+                          color: black">
+                Connection State :{{connectionStatus}}<br/>
+                 </div>
+</div>
+           </div>
+           <div *ngIf="guLinkStateFlag">
+ <div class="panel panel-default">
+                        <div class="panel-heading">     Ground Unit Link State
+                                <span style="float:right;cursor:pointer" (click)="guLinkStateFlag=false">X</span>
+
+                        </div>
+                          <div class="panel-body" style="
+                          background-color: rgba(204, 204, 204, 0.69);
+                          color: black">
+                 Rx Bytes per second : {{linkStateRx}} <br/>
+        Quality: {{linkStateQuality}} <br/>
+        Type : {{linkStateType}} <br/>
+        Tx Bytes per second : {{linkStateTx}}
+
+                 </div>
+</div>
+
+           </div>
+    </div>
+
+<!--
+ <button (click)="collapseWidget();" style="background-color:#CCC;color:#000;">Show Battery Status</button>
+<button style="background-color:#CCC;color:#000;float:right;" (click)="showHide()">X</button>
+Type: {{getdataBasicInfo}}<br/>
+Serial Number: {{getdataBasicInfoId1}}<br/>
+Uuid: {{getdataBasicInfoId2}}
+<hr>
+Service Info:
+<br/>
+Major : {{sampleJsonMajor}}
+<br/>
+Minor : {{sampleJsonMinor}}
+<hr>
+GPS Position:
+<br/>
+Latitude : {{sampleJsonGpsPositionLat}}
+<br/>
+Longitude : {{sampleJsonGpsPositionLong}}
+<br/>
+Altitude : {{sampleJsonGpsPositionAlt}}
+<hr>
+
+<button (click)="getBatteryStats()">Show Battery Info</button><br/>
+Pack cycles : {{batteryInfoJsonPackCycle}} <br/>
+serial No : {{batteryInfoJsonSerialNumber}} <br/>
+Type : {{batteryInfoJsonType}} <br/>
+Pack Capacity : {{batteryInfoJsonPackCapacity}}
+
+ <hr>
+
+ <button (click)="getLicenceStats()">Show Licence Info</button>
+ <br/>
+Valid Until : {{licenceInfoJsonValidUntil}} <br/>
+ Type : {{licenceInfoJsonValidType}}
+  <hr>
+  <button (click)="getPayloadInfo()">Payload Info</button><br/>
+   Payload Info Serial Number : {{payloadInfoserialNumber}}<br/>
+   Payload Info type : {{payloadInfoType}}
+<br/>
+<button (click)="getConnectionstatusGU()">Connection Status for GU </button><br/>
+Connection State : {{connectionStatus}}
+<br/>
+<button (click)="getTypeGU()">Type for GU </button><br/>
+Type : {{GUType}}
+<br/>
+<button (click)="getVersionGU()">Version for GU </button><br/>
+Major : {{GUMajorVersion}}
+Minor : {{GUMinorVersion}}
+<br/>
+<button (click)="getDroneFlightTime()">Drone Flight Time </button><br/>
+Drone Flight Time : {{DroneFlightTime}}
+<br/>
+-->
+</div>
+</div>

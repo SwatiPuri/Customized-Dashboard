@@ -1,0 +1,46 @@
+<!--
+<button (click)="postWaypoints1()">Waypoints</button>
+    -->
+            <button class="btn btn1 btn2" *ngIf='!showTable' (click)="readCsvData()">
+                Read CSV Data
+             </button>
+
+<table border="1" class="table" style="height:30vh;width:100%;overflow-x:scroll">
+<thead>
+    <tr>
+        <th>V id</th>
+        <th>WP type</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Height</th>
+        <th>Camera roll</th>
+        <th>Camera pitch</th>
+        <th>Camera yaw</th>
+        <th>Max speed</th>
+        <th>Max acceleration</th>
+        <th>wp event</th>
+        <th>Wait time</th>
+        <th>Flags</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let waypoint of csvData;" >
+      <td>&nbsp; {{waypoint[0]}}</td>
+      <td>&nbsp; {{waypoint[1]}}</td>
+      <td>&nbsp;{{waypoint[2]}}</td>
+      <td>&nbsp;{{waypoint[3]}}</td>
+      <td>&nbsp;{{waypoint[4]}}</td>
+      <td>&nbsp;{{waypoint[5]}}</td>
+      <td>&nbsp;{{waypoint[6]}}</td>
+      <td>&nbsp;{{waypoint[7]}}</td>
+      <td>&nbsp;{{waypoint[8]}}</td>
+      <td>&nbsp;{{waypoint[9]}}</td>
+      <td>&nbsp;{{waypoint[10]}}</td>
+      <td>&nbsp;{{waypoint[11]}}</td>
+      <td>&nbsp;{{waypoint[12]}}</td>
+
+
+    </tr>
+
+</tbody>
+</table>

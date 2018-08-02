@@ -1,0 +1,198 @@
+<div *ngIf = "MainPanel">
+<table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <tr>
+        <td style="padding-left:3em"><a>
+          <!--  <img src="../../assets/images/Connecting-Puzzle.jpg" height="60px" width="100px" (click) = "ImageClicked('connected')"/>
+       -->
+       <div (click) = "connectfn()">
+       <span class="glyphicon glyphicon-plus-sign" data-toggle="tooltip" title="Connect"></span>
+     </div>
+        </a>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:3em"><a>
+      <!--  <img src="../../assets/images/images.png" height="60px" width="100px" (click) = "MissionPlan()" />
+      -->
+      <div (click) = "MissionPlan()">
+      <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Plan Mission"></span>
+    </div>
+      </a></td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:3em"><a>
+          <div (click) = "flyDrone()">
+          <span class="glyphicon glyphicon-plane" data-toggle="tooltip" title="Fly"></span>
+        </div>
+      <!--  <img src="../../assets/images/fly.jpg" height="60px" width="100px" (click) = "flyDrone()"/>-->
+        </a></td>
+    </tr>
+
+    <tr>
+        <td style="padding-left:3em"><a>
+          <div (click) = "progressBars()">
+          <span class="glyphicon glyphicon-hourglass" data-toggle="tooltip" title="Progress"></span>
+        </div>
+      <!--  <img src="../../assets/images/fly.jpg" height="60px" width="100px" (click) = "progressBars()"/>-->
+        </a></td>
+    </tr>
+
+    <tr>
+        <td><a>
+      <!--  <img src="../../assets/images/others.jpg" height="60px" width="100px" (click) = "OtherOptions()" />
+      -->  </a></td>
+    </tr>
+</table>
+</div>
+<div *ngIf = "missionPanel" style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+    <tr>
+      <td style="padding-left:2em"><a>
+      <div (click) = "clearWayPoints()">
+      <span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Clear Waypoints"></span>
+    </div>
+  </a></td>
+    </tr>
+          <tr>
+        <td style="padding-left:2em"><a>
+        <div (click) = "setFlightMode()">
+        <span class="glyphicon glyphicon-screenshot" data-toggle="tooltip" title="Set Flight Mode"></span>
+      </div>
+    </a></td>
+      </tr>
+        <tr>
+      <td style="padding-left:2em"><a>
+      <div (click) = "setEmergencyProc()">
+      <span class="glyphicon glyphicon-duplicate" data-toggle="tooltip" title="Set Emergency Procedure"></span>
+    </div>
+  </a></td>
+    </tr>
+    </table>
+
+     <button value="close" (click) = "goToMainPanel()">Go Back</button>
+</div>
+<div *ngIf = "connectionPanel">
+ 
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+        <tr><td>Agent</td></tr> 
+      <tr>
+          <td>IP :
+            <input type="number" placeholder="192.168.2.35" [(ngModel)]="ipAdresss" style="color:black"/>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                Port :
+                <input type="number" placeholder="5000" [(ngModel)]="port"  style="color:black"/>
+            </td>
+          </tr>
+          <tr><td>SDK</td></tr>
+          <tr>
+              <td>IP :
+                <input type="number" placeholder="192.168.2.35" [(ngModel)]="ipAdresssSDK" style="color:black"/>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                    Port :
+                    <input type="number" placeholder="5000" [(ngModel)]="portSDK"  style="color:black"/>
+                </td>
+              </tr>
+          <tr>
+              <td>
+                  <button (click)="connect()">Connect</button>
+              </td>
+            </tr>
+        </table>
+
+
+
+
+ <button value="close" (click) = "goToMainPanel()">Go Back</button>
+</div>
+<div *ngIf = "flightPanel">
+    <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+      <tr>
+          <td style="padding-left:3em"><a>
+            <div (click) = "postStartMotor()">
+            <span class="glyphicon glyphicon-sound-stereo" data-toggle="tooltip" title="Start Motor"></span>
+          </div>
+          </a></td>
+      </tr>
+      <tr>
+          <td style="padding-left:3em"><a>
+            <div (click) = "poststopMotor()">
+            <span class="glyphicon glyphicon-sound-dolby" data-toggle="tooltip" title="Stop Motor"></span>
+          </div>
+          </a></td>
+      </tr>
+          <tr>
+              <td style="padding-left:3em"><a>
+                <div (click) = "poststartFlight()">
+                <span class="glyphicon glyphicon-export" data-toggle="tooltip" title="Start Flight"></span>
+              </div>
+              </a></td>
+          </tr>
+          <tr>
+              <td style="padding-left:3em"><a>
+                <div (click) = "poststopFlight()">
+                <span class="glyphicon glyphicon-import" data-toggle="tooltip" title="Stop Flight"></span>
+              </div>
+              </a></td>
+          </tr>
+          <tr>
+              <td style="padding-left:3em"><a>
+                <div (click) = "pauseFlight()">
+                <span class="glyphicon glyphicon-record" data-toggle="tooltip" title="Pause Flight"></span>
+              </div>
+              </a></td>
+          </tr>
+                <tr>
+                    <td style="padding-left:3em"><a>
+                      <div (click) = "comeHome()">
+                      <span class="glyphicon glyphicon-hand-down" data-toggle="tooltip" title="Come Home"></span>
+                    </div>
+                    </a></td>
+                </tr>
+        </table>
+
+ <button value="close" (click) = "goToMainPanel()">Go Back</button>
+    </div>
+
+    <div *ngIf = "progressPanel" style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+        <table style="background-color:black;border:10px solid grey;height:70vh;width:100%;color:#FFF">
+
+        <tr>
+            <td style="padding-left:2em"><a>
+              <div (click) = "initProgressUpdate()">
+              <span class="glyphicon glyphicon-time" data-toggle="tooltip" title="Init Progress"></span>
+            </div>
+            </a></td>
+        </tr>
+        <tr>
+            <td style="padding-left:2em"><a>
+              <div (click) = "flightProgressUpdate()">
+              <span class="glyphicon glyphicon-send" data-toggle="tooltip" title="Flight Progress"></span>
+            </div>
+            </a></td>
+        </tr>
+        <tr>
+            <td style="padding-left:2em"><a>
+              <div (click) = "uploadProgressUpdate()">
+              <span class="glyphicon glyphicon-level-up" data-toggle="tooltip" title="Upload Progress"></span>
+            </div>
+            </a></td>
+        </tr>
+        <tr>
+            <td style="padding-left:2em"><a>
+              <div (click) = "batteryProgressUpdate()">
+              <span class="glyphicon glyphicon-scale" data-toggle="tooltip" title="Battery Progress"></span>
+            </div>
+            </a></td>
+        </tr>
+        </table>
+
+         <button value="close" (click) = "goToMainPanel()">Go Back</button>
+    </div>
